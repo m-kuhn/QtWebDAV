@@ -15,17 +15,25 @@ endif()
 # Find required Qt components
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Xml REQUIRED)
 
-# Define library target
-add_library(QtWebDAV
+set(QtWebDAV_SOURCES
     qnaturalsort.cpp
-    qnaturalsort.h
     qwebdav.cpp
+    qwebdavdirparser.cpp
+    qwebdavitem.cpp
+)
+
+set(QtWebDAV_HEADERS
+    qnaturalsort.h
     qwebdav.h
     qwebdav_global.h
-    qwebdavdirparser.cpp
     qwebdavdirparser.h
-    qwebdavitem.cpp
     qwebdavitem.h
+)
+
+# Define library target
+add_library(QtWebDAV
+    ${QtWebDAV_SOURCES}
+    ${QtWebDAV_HEADERS}
 )
 
 # Set target properties
@@ -57,9 +65,8 @@ install(TARGETS QtWebDAV
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+install(FILES ${QtWebDAV_HEADERS}
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/QtWebDAV
-    FILES_MATCHING PATTERN "*.h"
 )
 
 # Export package
@@ -92,4 +99,3 @@ install(FILES
 if (BUILD_EXAMPLE)
     add_subdirectory(example)
 endif()
-
