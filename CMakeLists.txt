@@ -12,6 +12,10 @@ else()
     set(QT_VERSION_MAJOR 5)
 endif()
 
+if (WITH_EXTENDED_PROPERTIES)
+    add_compile_definitions(QWEBDAVITEM_EXTENDED_PROPERTIES)
+endif()
+
 # Find required Qt components
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Xml REQUIRED)
 
