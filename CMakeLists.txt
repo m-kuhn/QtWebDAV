@@ -4,16 +4,13 @@ project(QtWebDAV LANGUAGES CXX)
 # Set default options
 option(BUILD_EXAMPLE "Build with example" OFF)
 option(BUILD_WITH_QT6 "Explicitly build with Qt6" OFF)
+option(WITH_EXTENDED_PROPERTIES "Build with extended properties for WedDAV items" OFF)
 
 # Determine Qt version to use
 if (BUILD_WITH_QT6)
     set(QT_VERSION_MAJOR 6)
 else()
     set(QT_VERSION_MAJOR 5)
-endif()
-
-if (WITH_EXTENDED_PROPERTIES)
-    add_compile_definitions(QWEBDAVITEM_EXTENDED_PROPERTIES)
 endif()
 
 # Find required Qt components
@@ -54,6 +51,10 @@ target_include_directories(QtWebDAV PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 target_compile_definitions(QtWebDAV PRIVATE -DQWEBDAV_LIBRARY DEBUG_WEBDAV)
+
+if (WITH_EXTENDED_PROPERTIES)
+    target_compile_definitions(QtWebDAV PRIVATE -DQWEBDAVITEM_EXTENDED_PROPERTIES)
+endif()
 
 # Link Qt libraries
 target_link_libraries(QtWebDAV PUBLIC
