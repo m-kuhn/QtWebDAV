@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         qt_version: [5, 6]
+        build_shared_libs: [ON, OFF]
 
     runs-on: ubuntu-latest
     
@@ -44,6 +45,7 @@ jobs:
           cmake -GNinja \
             -S . \
             -D${CMAKE_QT_OPTION} \
+            -DBUILD_SHARED_LIBS=${{ matrix.build_shared_libs}} \
             -B build
           cmake --build build
 
