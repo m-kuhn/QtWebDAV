@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.19)
 project(QtWebDAV LANGUAGES CXX)
 
+include(GenerateExportHeader)
+
 # Set default options
 option(BUILD_EXAMPLE "Build with example" OFF)
 option(BUILD_WITH_QT6 "Explicitly build with Qt6" OFF)
@@ -45,12 +47,21 @@ set_target_properties(QtWebDAV PROPERTIES
     EXPORT_NAME QtWebDAV
 )
 
+generate_export_header(
+  QtWebDAV
+  BASE_NAME QTWEBDAV
+  EXPORT_FILE_NAME qwebdav_global.h
+)
+
+list(APPEND QtWebDAV_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/qwebdav_global.h)
+
 # Specify include directories and compile definitions
 target_include_directories(QtWebDAV PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     $<INSTALL_INTERFACE:include>
 )
-target_compile_definitions(QtWebDAV PRIVATE -DQWEBDAV_LIBRARY DEBUG_WEBDAV)
+target_compile_definitions(QtWebDAV PRIVATE DEBUG_WEBDAV)
 
 if (WITH_EXTENDED_PROPERTIES)
     target_compile_definitions(QtWebDAV PRIVATE -DQWEBDAVITEM_EXTENDED_PROPERTIES)
