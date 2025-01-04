@@ -42,8 +42,8 @@ add_library(QtWebDAV
 # Set target properties
 set_target_properties(QtWebDAV PROPERTIES
     AUTOMOC ON
-    VERSION 1.0
-    SOVERSION 1
+    VERSION 2.0
+    SOVERSION 2
     EXPORT_NAME QtWebDAV
 )
 
