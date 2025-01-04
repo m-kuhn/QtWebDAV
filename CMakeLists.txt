@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.19)
 project(QtWebDAV LANGUAGES CXX)
 
+include(GenerateExportHeader)
+
 # Set default options
 option(BUILD_EXAMPLE "Build with example" OFF)
 option(BUILD_WITH_QT6 "Explicitly build with Qt6" OFF)
