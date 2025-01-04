@@ -30,7 +30,7 @@ set(QtWebDAV_HEADERS
     qwebdavitem.h
 )
 
-generate_export_headers(
+generate_export_header(
   qwebdav_global
   BASE_NAME QTWEBDAV
   EXPORT_FILE_NAME qwebdav_global.h
