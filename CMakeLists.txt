@@ -32,14 +32,6 @@ set(QtWebDAV_HEADERS
     qwebdavitem.h
 )
 
-generate_export_header(
-  qwebdav_global
-  BASE_NAME QTWEBDAV
-  EXPORT_FILE_NAME qwebdav_global.h
-)
-
-list(APPEND QtWebDAV_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/qwebdav_global.h)
-
 # Define library target
 add_library(QtWebDAV
     ${QtWebDAV_SOURCES}
@@ -53,6 +45,14 @@ set_target_properties(QtWebDAV PROPERTIES
     SOVERSION 1
     EXPORT_NAME QtWebDAV
 )
+
+generate_export_header(
+  QtWebDAV
+  BASE_NAME QTWEBDAV
+  EXPORT_FILE_NAME qwebdav_global.h
+)
+
+list(APPEND QtWebDAV_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/qwebdav_global.h)
 
 # Specify include directories and compile definitions
 target_include_directories(QtWebDAV PUBLIC
