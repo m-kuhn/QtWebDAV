@@ -7,6 +7,7 @@ include(GenerateExportHeader)
 option(BUILD_EXAMPLE "Build with example" OFF)
 option(BUILD_WITH_QT6 "Explicitly build with Qt6" OFF)
 option(WITH_EXTENDED_PROPERTIES "Build with extended properties for WedDAV items" OFF)
+option(WITH_DEBUG "Enable verbose debug logging" OFF)
 
 # Determine Qt version to use
 if (BUILD_WITH_QT6)
@@ -60,10 +61,13 @@ target_include_directories(QtWebDAV PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     $<INSTALL_INTERFACE:include>
 )
-target_compile_definitions(QtWebDAV PRIVATE DEBUG_WEBDAV)
+
+if (WITH_DEBUG)
+    target_compile_definitions(QtWebDAV PRIVATE DEBUG_WEBDAV)
+endif()
 
 if (WITH_EXTENDED_PROPERTIES)
-    target_compile_definitions(QtWebDAV PRIVATE -DQWEBDAVITEM_EXTENDED_PROPERTIES)
+    target_compile_definitions(QtWebDAV PRIVATE QWEBDAVITEM_EXTENDED_PROPERTIES)
 endif()
 
 # Link Qt libraries
