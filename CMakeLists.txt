@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(QtWebDAV LANGUAGES CXX)
+project(QtWebDAV LANGUAGES CXX VERSION 2.1)
 
 include(GenerateExportHeader)
 
@@ -42,8 +42,8 @@ add_library(QtWebDAV
 # Set target properties
 set_target_properties(QtWebDAV PROPERTIES
     AUTOMOC ON
-    VERSION 2.0
-    SOVERSION 2
+    VERSION ${CMAKE_PROJECT_VERSION}
+    SOVERSION ${CMAKE_PROJECT_VERSION_MAJOR}
     EXPORT_NAME QtWebDAV
 )
 
