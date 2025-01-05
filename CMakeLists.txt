@@ -7,7 +7,7 @@ include(GenerateExportHeader)
 option(BUILD_EXAMPLE "Build with example" OFF)
 option(BUILD_WITH_QT6 "Explicitly build with Qt6" OFF)
 option(WITH_EXTENDED_PROPERTIES "Build with extended properties for WedDAV items" OFF)
-option(WITH_DEBUG "Build with debug information" OFF)
+option(WITH_DEBUG "Enable verbose debug logging" OFF)
 
 # Determine Qt version to use
 if (BUILD_WITH_QT6)
