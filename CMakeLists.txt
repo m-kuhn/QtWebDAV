@@ -28,7 +28,6 @@ set(QtWebDAV_SOURCES
 set(QtWebDAV_HEADERS
     qnaturalsort.h
     qwebdav.h
-    qwebdav_global.h
     qwebdavdirparser.h
     qwebdavitem.h
 )
